@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const Router = require('./Router');
-const RouterAdmin = require('./RouterAdmin');
 const helmet = require('helmet');
 
 app.use(cors());
@@ -15,7 +14,6 @@ app.use(helmet());
 
 app.use('/', Router);
 
-app.use('/admin', RouterAdmin);
 
 
 

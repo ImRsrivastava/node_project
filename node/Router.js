@@ -82,7 +82,20 @@ Router.get('/api/admin/auth', verifyJwtToken, (req, res) => {
 
 Router.get('/api/admin/branch/list', verifyJwtToken, (req, res) => {
     const getList = BranchModule.getAllBranchList(req, res);
-})
+});
+
+Router.post('/api/admin/branch/create', verifyJwtToken, [
+    body('name').notEmpty().withMessage('* Branch name should be required.'),
+    body('email').notEmpty().withMessage('* Branch email should be required.'),
+    body('phone').notEmpty().withMessage('* Branch contact should be required.'),
+    body('address').notEmpty().withMessage('* Branch address should be required.'),
+    body('pincode').notEmpty().withMessage('* Branch pincode should be required.'),
+    body('city').notEmpty().withMessage('* City should be required.'),
+    body('state').notEmpty().withMessage('* State should be required.'),
+    body('country').notEmpty().withMessage('* Country should be required.'),
+], (req, res) => {
+    const createB = BranchModule.createNewBranch(req, res);
+});
 
 
 

@@ -1165,9 +1165,11 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
     font-size: 0.8em !important;
 }
-
 .form-control {
     border-radius: 3px !important;
+}
+textarea.form-control {
+    resize: none;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

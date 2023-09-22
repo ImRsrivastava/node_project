@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const dbConnect = require('../connection/dbConnection');
 const misFunctions = require('../functions/Functions');
 
@@ -17,8 +18,28 @@ function getAllBranchList (req, res)
         return res.status(500).json(er); }
 }
 
+function createNewBranch (req, res) 
+{
+    try {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            const validateErr = errors.array().reduce((acc, err) => {
+                acc[err.path] = err.msg;
+                return acc;
+            }, {});
+            return res.status(422).json(validateErr); }
+        else {
+            // dbConnect.query("SELECT * FROM ")
+        }
+    }
+    catch (er) {
+
+    }
+}
+
 
 
 module.exports = {
-    getAllBranchList
+    getAllBranchList,
+    createNewBranch
 }
