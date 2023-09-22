@@ -1,0 +1,49 @@
+version: "3"
+services:
+    react:
+        build:
+            context: ./react
+            dockerfile: Dockerfile        
+        restart: always
+        container_name: cont_react
+        volumes:
+            - ./react:/var/www/html/react
+        ports:
+            - "3000:3000"
+        depends_on:
+            - node
+
+    node:
+        build:
+            context: ./node
+            dockerfile: Dockerfile        
+        restart: always
+        container_name: cont_node
+        volumes:
+            - ./node:/var/www/html/node
+        ports:
+            - "5000:5000"
+        environment:
+            - MYSQL_HOST=mysql
+            - MYSQL_PORT=3308
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+            - MYSQL_DATABASE=node_project
+        depends_on:
+            - db
+
+    db:
+        image: mysql:latest
+        container_name: cont_db
+        command: ["--default-authentication-plugin", "mysql_native_password"]
+        restart: always
+        ports:
+            - "3308:3306"
+        volumes:
+            - ./init:/docker-entrypoint-initdb.d
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=node_project
+            - MYSQL_PORT=3306
+
+
