@@ -29,7 +29,8 @@ function createNewBranch (req, res)
             }, {});
             return res.status(422).json(validateErr); }
         else {
-            // dbConnect.query("SELECT * FROM ")
+            let {email, phone} = req.body;
+            // dbConnect.query("SELECT * FROM `branch` WHERE `email` = ? AND `phone` = ?", [email, phone])
         }
     }
     catch (er) {

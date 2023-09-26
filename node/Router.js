@@ -89,7 +89,7 @@ Router.post('/api/admin/branch/create', verifyJwtToken, [
     body('email').notEmpty().withMessage('* Branch email should be required.'),
     body('phone').notEmpty().withMessage('* Branch contact should be required.'),
     body('address').notEmpty().withMessage('* Branch address should be required.'),
-    body('pincode').notEmpty().withMessage('* Branch pincode should be required.'),
+    body('pincode').notEmpty().withMessage('* Pincode should be required.'),
     body('city').notEmpty().withMessage('* City should be required.'),
     body('state').notEmpty().withMessage('* State should be required.'),
     body('country').notEmpty().withMessage('* Country should be required.'),

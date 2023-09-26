@@ -153,36 +153,20 @@ const BranchCreate = () => {
                                                     {(validateErr.address) ? <div className="invalid-feedback">{validateErr.address}</div> : ''}
                                                 </div>
 
-                                                <div className="col-1">
-                                                    <label htmlFor="branch_pincode" className="form-label"> Pincode <span className="text-danger">*</span> :</label>
-                                                    <input 
-                                                        type="number" 
-                                                        className="form-control" 
-                                                        id="branch_pincode"
-                                                        name="branch_pincode" 
-                                                        autoComplete="off" 
-                                                        placeholder="Pincode" 
-                                                        maxLength="6"
-                                                        value={formField.branch_pincode}
-                                                        onChange={handleFormField}
-                                                    />
-                                                    {(validateErr.pincode) ? <div className="invalid-feedback">{validateErr.pincode}</div> : ''}
-                                                </div>
-                                                
-                                                <div className="col-3">
-                                                    <label htmlFor="branch_city" className="form-label"> City <span className="text-danger">*</span> :</label>
+                                                <div className="col-2">
+                                                    <label htmlFor="branch_country" className="form-label"> Country <span className="text-danger">*</span> :</label>
                                                     <input 
                                                         type="text" 
                                                         className="form-control" 
-                                                        id="branch_city" 
-                                                        name="branch_city" 
+                                                        id="branch_country" 
+                                                        name="branch_country" 
                                                         autoComplete="off" 
-                                                        placeholder="Branch City" 
+                                                        placeholder="Branch Country" 
                                                         maxLength="50" 
-                                                        value={formField.branch_city}
+                                                        value={formField.branch_country}
                                                         onChange={handleFormField}
                                                     />
-                                                    {(validateErr.city) ? <div className="invalid-feedback">{validateErr.city}</div> : ''}
+                                                    {(validateErr.country) ? <div className="invalid-feedback">{validateErr.country}</div> : ''}
                                                 </div>
 
                                                 <div className="col-2">
@@ -200,21 +184,37 @@ const BranchCreate = () => {
                                                     />
                                                     {(validateErr.state) ? <div className="invalid-feedback">{validateErr.state}</div> : ''}
                                                 </div>
-                                                
+
                                                 <div className="col-2">
-                                                    <label htmlFor="branch_country" className="form-label"> Country <span className="text-danger">*</span> :</label>
+                                                    <label htmlFor="branch_city" className="form-label"> City <span className="text-danger">*</span> :</label>
                                                     <input 
                                                         type="text" 
                                                         className="form-control" 
-                                                        id="branch_country" 
-                                                        name="branch_country" 
+                                                        id="branch_city" 
+                                                        name="branch_city" 
                                                         autoComplete="off" 
-                                                        placeholder="Branch Country" 
+                                                        placeholder="Branch City" 
                                                         maxLength="50" 
-                                                        value={formField.branch_country}
+                                                        value={formField.branch_city}
                                                         onChange={handleFormField}
                                                     />
-                                                    {(validateErr.country) ? <div className="invalid-feedback">{validateErr.country}</div> : ''}
+                                                    {(validateErr.city) ? <div className="invalid-feedback">{validateErr.city}</div> : ''}
+                                                </div>
+
+                                                <div className="col-2">
+                                                    <label htmlFor="branch_pincode" className="form-label"> Pincode <span className="text-danger">*</span> :</label>
+                                                    <input 
+                                                        type="number" 
+                                                        className="form-control" 
+                                                        id="branch_pincode"
+                                                        name="branch_pincode" 
+                                                        autoComplete="off" 
+                                                        placeholder="Pincode" 
+                                                        maxLength="6"
+                                                        value={formField.branch_pincode}
+                                                        onChange={handleFormField}
+                                                    />
+                                                    {(validateErr.pincode) ? <div className="invalid-feedback">{validateErr.pincode}</div> : ''}
                                                 </div>
                                             </div>
 
