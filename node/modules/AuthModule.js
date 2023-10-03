@@ -18,7 +18,6 @@ function authenticateLogin (req, res)
 
         else {
             let {email, password, role} = req.body;
-            // let role = 1;
             dbConnect.query("SELECT * FROM `auths` WHERE `email` = ? AND `role` = ?", [email, role], async (errs, rows) => {
                 if(errs) {
                     return res.status(500).send(errs); }

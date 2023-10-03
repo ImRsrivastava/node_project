@@ -18,7 +18,7 @@ function getAllBranchList (req, res)
         return res.status(500).json(er); }
 }
 
-function createNewBranch (req, res) 
+function createNewBranch (req, res)
 {
     try {
         const errors = validationResult(req);
@@ -29,8 +29,13 @@ function createNewBranch (req, res)
             }, {});
             return res.status(422).json(validateErr); }
         else {
-            let {email, phone} = req.body;
-            // dbConnect.query("SELECT * FROM `branch` WHERE `email` = ? AND `phone` = ?", [email, phone])
+            let {email} = req.body;
+            dbConnect.query("SELECT * FROM `branch` WHERE `email` = ?", [email], async (errs, rows) => {
+                if (errs) {
+                    return res.status(500).json(errs); }
+                if (rows.length > 0) {
+                    return res.status(200).json({msg: 'Email is already in use, Try another email.'}); }
+            });
         }
     }
     catch (er) {

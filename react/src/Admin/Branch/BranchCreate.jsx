@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaTimes, FaRegArrowAltCircleLeft } from "react-icons/fa";
 import axiosAdminInstance from "../../axiosAdminInstance";
+import $ from 'jquery';
+import 'select2';
+import 'select2/dist/css/select2.min.css';
+
 
 
 const BranchCreate = () => {
 
+    const selectRef = useRef(null);
     const [loader, setLoader] = useState(false);
     const [errorLog, setErrorLog] = useState("");
     const [validateErr, setValidateErr] = useState("");
@@ -25,6 +30,9 @@ const BranchCreate = () => {
         setTimeout(() => {
             setValidateErr(""); setFormField({branch_name:"", branch_email:"", branch_contact:"", branch_address:"", branch_pincode:"", branch_city:"", branch_state:"", branch_country:""})
             setLoader(false);
+            
+            $(selectRef.current).select2();
+            return () => $(selectRef.current).select2('destroy');
         },500);
     }, []);
 
@@ -36,10 +44,11 @@ const BranchCreate = () => {
             console.log('check-response:: ', response);
         })
         .catch ((error) => {
-            console.log('check-error:: ', error.response);
-            const errors = error.response
+            const errors = error.response;
             if((errors) && (errors.status == 422)) {
-                setValidateErr(errors.data); }
+                setValidateErr(errors.data);
+                setTimeout(() => { setValidateErr(""); }, 2500);
+            }
         });
     }
 
@@ -155,17 +164,11 @@ const BranchCreate = () => {
 
                                                 <div className="col-2">
                                                     <label htmlFor="branch_country" className="form-label"> Country <span className="text-danger">*</span> :</label>
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control" 
-                                                        id="branch_country" 
-                                                        name="branch_country" 
-                                                        autoComplete="off" 
-                                                        placeholder="Branch Country" 
-                                                        maxLength="50" 
-                                                        value={formField.branch_country}
-                                                        onChange={handleFormField}
-                                                    />
+                                                    <select className="form-control" onChange={handleFormField} ref={selectRef} id="branch_country" name="branch_country" >
+                                                        <option selected value=""> Select Country </option>
+                                                        <option value="1"> India </option>
+                                                        <option value="2"> Other </option>
+                                                    </select>
                                                     {(validateErr.country) ? <div className="invalid-feedback">{validateErr.country}</div> : ''}
                                                 </div>
 
